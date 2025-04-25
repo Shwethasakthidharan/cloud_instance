@@ -1,14 +1,20 @@
-# Use lightweight OpenJDK 17 image
+# Use OpenJDK 17 as the base image
 FROM openjdk:17-jdk-slim
 
-# Set working directory
+# Install Maven (so we can build the Java project)
+RUN apt-get update && apt-get install -y maven
+
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the JAR file to the container
-COPY target/*.jar app.jar
+# Copy the entire project into the container
+COPY . /app
 
-# Expose the port Render will use (Render injects $PORT, but this EXPOSE is optional)
+# Build the application using Maven (this will generate the .jar)
+RUN mvn clean package
+
+# Expose the port that Render will use (Render injects $PORT)
 EXPOSE 8080
 
-# Run the Spring Boot app — pick up PORT from environment
-ENTRYPOINT ["sh", "-c", "java -jar app.jar"]
+# Run the Spring Boot app (assuming the jar is in target/)
+ENTRYPOINT ["java", "-jar", "target/*.jar"]
