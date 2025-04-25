@@ -14,7 +14,7 @@ public class Instance {
     private String marketOption;
     private double price;
 
-    // For debugging
+    // debugging
     @Override
     public String toString() {
         return String.format(

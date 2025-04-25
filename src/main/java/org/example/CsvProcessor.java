@@ -24,7 +24,7 @@ public class CsvProcessor {
             try (CSVReader reader = new CSVReader(new InputStreamReader(
                     resource.getInputStream(), StandardCharsets.UTF_8))) {
 
-                // Skip header
+
                 String[] header = reader.readNext();
                 if (header == null) {
                     throw new RuntimeException("CSV file is empty");
