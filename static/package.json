@@ -1,0 +1,20 @@
+{
+  "name": "cloud-instance-finder",
+  "version": "1.0.0",
+  "description": "Frontend for Cloud Instance Finder",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd ../ && mvn spring-boot:run",
+    "frontend": "vite",
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vite": "^4.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

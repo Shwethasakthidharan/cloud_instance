@@ -1,0 +1,51 @@
+sku,instanceType,vcpu,memory,storage,operatingSystem,marketoption,regionCode,Pricing
+N/A,idi.large,2,16 GiB,1 x 468 NVMe SSD,Ubuntu Pro,OnDemand,ap-southeast-5,0.186
+N/A,i3en.metal,96,768 GiB,8 x 7500 NVMe SSD,Linux,OnDemand,ap-southeast-5,9.876
+N/A,idi.8xlarge,32,256 GiB,2 x 3750 NVMe SSD,Linux,OnDemand,ap-southeast-5,3.456
+N/A,c6id.xlarge,4,8 GiB,1 x 237 NVMe SSD,Windows,OnDemand,ap-southeast-5,0.289
+N/A,c6in.4xlarge,16,32 GiB,EBS only,Windows,OnDemand,ap-southeast-5,0.876
+N/A,x2idn.metal,128,2048 GiB,2 x 1900 NVMe SSD,RHEL,OnDemand,ap-southeast-5,15.432
+N/A,m7g.xlarge,4,16 GiB,EBS only,SUSE,OnDemand,ap-southeast-5,0.342
+N/A,c6id.24xlarge,96,192 GiB,4 x 1425 NVMe SSD,Ubuntu Pro,OnDemand,ap-southeast-5,6.789
+N/A,idi.2xlarge,8,64 GiB,1 x 1875 NVMe SSD,Linux,OnDemand,ap-southeast-5,1.245
+N/A,idi.8xlarge,32,256 GiB,2 x 3750 NVMe SSD,Red Hat Enterprise Linux with HA,OnDemand,ap-southeast-5,3.987
+N/A,c6id.xlarge,4,8 GiB,1 x 237 NVMe SSD,Linux,OnDemand,ap-southeast-5,0.198
+N/A,idi.8xlarge,32,256 GiB,2 x 3750 NVMe SSD,Windows,OnDemand,ap-southeast-5,4.321
+N/A,r7i.8xlarge,32,256 GiB,EBS only,Windows,OnDemand,ap-southeast-5,4.567
+N/A,m7i.xlarge,4,16 GiB,EBS only,SUSE,OnDemand,ap-southeast-5,0.278
+N/A,idi.12xlarge,48,384 GiB,3 x 3750 NVMe SSD,Windows,OnDemand,ap-southeast-5,6.123
+N/A,r6i.xlarge,4,32 GiB,EBS only,Windows,OnDemand,ap-southeast-5,0.354
+N/A,c6in.metal,128,256 GiB,EBS only,SUSE,OnDemand,ap-southeast-5,8.765
+N/A,m7i.24xlarge,96,384 GiB,EBS only,Red Hat Enterprise Linux with HA,OnDemand,ap-southeast-5,7.89
+N/A,idi.xlarge,4,32 GiB,1 x 937 NVMe SSD,RHEL,OnDemand,ap-southeast-5,0.654
+N/A,c6i.xlarge,4,8 GiB,EBS only,Linux,OnDemand,ap-southeast-5,0.176
+N/A,m6g.large,2,8 GiB,EBS only,RHEL,OnDemand,ap-southeast-5,0.132
+N/A,m6id.2xlarge,8,32 GiB,1 x 474 NVMe SSD,Linux,OnDemand,ap-southeast-5,0.543
+N/A,m6i.12xlarge,48,192 GiB,EBS only,SUSE,OnDemand,ap-southeast-5,3.21
+N/A,m7i.metal-48xl,192,768 GiB,EBS only,Linux,OnDemand,ap-southeast-5,12.345
+N/A,c7i.12xlarge,48,96 GiB,EBS only,Linux,OnDemand,ap-southeast-5,2.876
+N/A,m7i.metal-48xl,192,768 GiB,EBS only,SUSE,OnDemand,ap-southeast-5,13.456
+N/A,c7i.12xlarge,48,96 GiB,EBS only,Linux,OnDemand,ap-southeast-5,2.876
+N/A,c5d.xlarge,4,8 GiB,1 x 100 NVMe SSD,Linux,OnDemand,ap-southeast-5,0.088
+N/A,m5n.2xlarge,8,32 GiB,EBS only,Windows,OnDemand,ap-southeast-5,0.4
+N/A,r5dn.4xlarge,16,128 GiB,2 x 600 NVMe SSD,RHEL,OnDemand,ap-southeast-5,1.472
+N/A,t3.medium,2,4 GiB,EBS only,Linux,OnDemand,ap-southeast-5,0.04
+N/A,g4dn.xlarge,4,16 GiB,1 x 125 NVMe SSD,Windows,OnDemand,ap-southeast-5,0.22
+N/A,p3.8xlarge,32,244 GiB,EBS only,Ubuntu Pro,OnDemand,ap-southeast-5,7.04
+N/A,x1e.xlarge,4,122 GiB,1 x 120 SSD,SUSE,OnDemand,ap-southeast-5,0.184
+N/A,z1d.3xlarge,12,96 GiB,1 x 450 NVMe SSD,Linux,OnDemand,ap-southeast-5,0.396
+N/A,a1.2xlarge,8,16 GiB,EBS only,Linux,OnDemand,ap-southeast-5,0.16
+N/A,c5n.9xlarge,36,96 GiB,EBS only,Windows,OnDemand,ap-southeast-5,3.24
+N/A,m5a.large,2,8 GiB,EBS only,Linux,OnDemand,ap-southeast-5,0.04
+N/A,r5b.8xlarge,32,256 GiB,EBS only,RHEL,OnDemand,ap-southeast-5,3.68
+N/A,t2.micro,1,1 GiB,EBS only,Linux,OnDemand,ap-southeast-5,0.02
+N/A,g5.xlarge,4,16 GiB,1 x 250 NVMe SSD,Windows,OnDemand,ap-southeast-5,0.22
+N/A,p2.xlarge,4,61 GiB,EBS only,Ubuntu Pro,OnDemand,ap-southeast-5,0.176
+N/A,x2gd.medium,1,16 GiB,EBS only,SUSE,OnDemand,ap-southeast-5,0.023
+N/A,z1d.large,2,16 GiB,1 x 75 NVMe SSD,Linux,OnDemand,ap-southeast-5,0.066
+N/A,a1.medium,1,2 GiB,EBS only,Linux,OnDemand,ap-southeast-5,0.02
+N/A,c5.metal,96,192 GiB,EBS only,Windows,OnDemand,ap-southeast-5,8.64
+N/A,m5d.24xlarge,96,384 GiB,4 x 900 NVMe SSD,RHEL,OnDemand,ap-southeast-5,13.248
+N/A,r5d.xlarge,4,32 GiB,1 x 150 NVMe SSD,Linux,OnDemand,ap-southeast-5,0.176
+N/A,t3a.nano,2,0.5 GiB,EBS only,Linux,OnDemand,ap-southeast-5,0.04
+N/A,g5g.2xlarge,8,32 GiB,1 x 225 NVMe SSD,Windows,OnDemand,ap-southeast-5,0.88
