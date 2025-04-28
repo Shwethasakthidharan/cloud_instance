@@ -1,20 +1,9 @@
-# Use OpenJDK 17 as the base image
-FROM openjdk:17-jdk-slim
+FROM maven:3.8.6-openjdk-17 AS build
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Install Maven (so we can build the Java project)
-RUN apt-get update && apt-get install -y maven
 
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the entire project into the container
-COPY . /app
-
-# Build the application using Maven (this will generate the .jar)
-RUN mvn clean package
-
-# Expose the port that Render will use (Render injects $PORT)
-EXPOSE 8080
-
-# Run the Spring Boot app (assuming the jar is in target/)
-ENTRYPOINT ["java", "-jar", "target/*.jar"]
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /app/target/aws-instance-recommendation-1.0.0.jar app.jar
+EXPOSE 8083
+ENTRYPOINT ["java", "-jar", "app.jar"]
