@@ -286,8 +286,9 @@
             <div class="filter-title">vCPUs</div>
             <div class="search-field">
                 <div class="slider-container">
-                    <input type="range" id="vcpu" min="0" max="7" value="2" step="1">
+                    <input type="range" id="vcpu" min="0" max="8" value="0" step="1">
                     <div class="slider-markers">
+                        <span data-value="Any"></span>
                         <span data-value="1"></span>
                         <span data-value="2"></span>
                         <span data-value="4"></span>
@@ -297,7 +298,7 @@
                         <span data-value="64"></span>
                         <span data-value="96"></span>
                     </div>
-                    <span id="vcpu-value" class="slider-value">4 vCPUs</span>
+                    <span id="vcpu-value" class="slider-value">Any vCPUs</span>
                 </div>
             </div>
         </div>
@@ -306,8 +307,9 @@
             <div class="filter-title">Memory (GB)</div>
             <div class="search-field">
                 <div class="slider-container">
-                    <input type="range" id="memory" min="0" max="8" step="1" value="3">
+                    <input type="range" id="memory" min="0" max="9" step="1" value="0">
                     <div class="slider-markers">
+                        <span data-value="Any"></span>
                         <span data-value="0.5"></span>
                         <span data-value="2"></span>
                         <span data-value="8"></span>
@@ -318,7 +320,7 @@
                         <span data-value="256"></span>
                         <span data-value="384"></span>
                     </div>
-                    <span id="memory-value" class="slider-value">8 GB</span>
+                    <span id="memory-value" class="slider-value">Any Memory</span>
                 </div>
             </div>
         </div>
@@ -378,46 +380,27 @@
         const vcpuValueDisplay = document.getElementById('vcpu-value');
         const memoryValueDisplay = document.getElementById('memory-value');
 
-        // Define the actual values for the sliders
-        const vcpuValues = [1, 2, 4, 8, 16, 32, 64, 96];
-        const memoryValues = [0.5, 2, 8, 16, 32, 64, 128, 256, 384];
+        // Define the actual values for the sliders (0 index is "Any")
+        const vcpuValues = [null, 1, 2, 4, 8, 16, 32, 64, 96];
+        const memoryValues = [null, 0.5, 2, 8, 16, 32, 64, 128, 256, 384];
 
         let currentPage = 1;
         const resultsPerPage = 15;
         let allResults = [];
 
-        // Function to snap slider to nearest marker
-        function snapSliderToMarker(slider, values) {
-            const sliderWidth = slider.offsetWidth;
-            const thumbWidth = 18;
-            const step = sliderWidth / (values.length - 1);
-
-            slider.addEventListener('input', function() {
-                const value = parseInt(this.value);
-                const nearest = Math.round((value * step) / sliderWidth * (values.length - 1));
-                this.value = nearest;
-                updateSliderDisplays();
-            });
-        }
-
-        // Update slider value displays
+        // Function to update slider value displays
         function updateSliderDisplays() {
-            // Get the actual value based on slider position
             const vcpuIndex = parseInt(vcpuSlider.value);
             const memoryIndex = parseInt(memorySlider.value);
 
             const vcpuValue = vcpuValues[vcpuIndex];
             const memoryValue = memoryValues[memoryIndex];
 
-            vcpuValueDisplay.textContent = `${vcpuValue} vCPU${vcpuValue > 1 ? 's' : ''}`;
-            memoryValueDisplay.textContent = `${memoryValue} GB`;
+            vcpuValueDisplay.textContent = vcpuValue === null ? 'Any vCPUs' : `${vcpuValue} vCPU${vcpuValue > 1 ? 's' : ''}`;
+            memoryValueDisplay.textContent = memoryValue === null ? 'Any Memory' : `${memoryValue} GB`;
         }
 
-        // Initialize slider snapping
-        snapSliderToMarker(vcpuSlider, vcpuValues);
-        snapSliderToMarker(memorySlider, memoryValues);
-
-        // Initial display update
+        // Initialize slider displays
         updateSliderDisplays();
 
         // Update displays when sliders change
@@ -458,11 +441,14 @@
 
                 // Build query parameters
                 const params = new URLSearchParams();
-                if (provider) params.append('provider', provider);
-                if (location) params.append('location', location);
+                params.append('provider', provider);
+                params.append('location', location);
                 if (os) params.append('os', os);
-                params.append('vcpu', vcpu);
-                params.append('memory', memory);
+
+                // Only add vcpu and memory if not "Any" (null)
+                if (vcpu !== null) params.append('vcpu', vcpu);
+                if (memory !== null) params.append('memory', memory);
+
                 if (storage) params.append('storage', storage);
 
                 // Make API call
@@ -483,7 +469,30 @@
                 }
 
                 const data = await response.json();
-                allResults = data;
+
+                // Apply additional client-side filtering for exact matches
+                allResults = data.filter(instance => {
+                    // Provider filter (exact match)
+                    if (instance.provider !== provider) return false;
+
+                    // Location filter (exact match)
+                    if (instance.location !== location) return false;
+
+                    // OS filter (if specified)
+                    if (os && instance.operatingSystem !== os) return false;
+
+                    // vCPU filter (if not "Any")
+                    if (vcpu !== null && instance.vcpu !== vcpu) return false;
+
+                    // Memory filter (if not "Any")
+                    if (memory !== null && instance.memory !== memory) return false;
+
+                    // Storage filter (if specified)
+                    if (storage && instance.storage !== storage) return false;
+
+                    return true;
+                });
+
                 updateTable();
                 updatePagination();
                 updateResultsInfo();
@@ -677,7 +686,7 @@
                 item.instanceType || '',
                 item.provider || '',
                 item.location || '',
-                item.operatingSystem || item.operatingSystem || '',
+                item.operatingSystem || '',
                 item.vcpu || '',
                 item.memory || '',
                 item.storage || '',
