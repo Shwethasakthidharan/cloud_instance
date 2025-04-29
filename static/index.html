@@ -452,7 +452,7 @@
                 if (storage) params.append('storage', storage);
 
                 // Make API call
-                const response = await fetch(`http://localhost:8083/api/recommendations?${params}`, {
+                const response = await fetch(`http://localhost:8080/api/recommendations?${params}`, {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
